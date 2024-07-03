@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
         stick.style.top = '50%';
         stick.style.left = '50%';
         stick.style.transform = 'translate(-50%, -50%)';
-        lastCommand = '';
+        lastCommand = ''; // Reset last command
     });
 
     document.addEventListener('mousemove', function(event) {
@@ -33,14 +33,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 let command = '';
                 if (offsetY < -maxDistance / 2) {
-                    command += 'Forward';
+                    command += 'forward';
                 } else if (offsetY > maxDistance / 2) {
-                    command += 'Backward';
+                    command += 'backward';
                 }
                 if (offsetX < -maxDistance / 2) {
-                    command += 'Left';
+                    command += 'left';
                 } else if (offsetX > maxDistance / 2) {
-                    command += 'Right';
+                    command += 'right';
                 }
 
                 if (command && command !== lastCommand) {
@@ -50,12 +50,12 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     });
-
-    function sendCommand(command) {
-        console.log("Command: " + command);
-        const xhr = new XMLHttpRequest();
-        xhr.open("POST", "store_command.php", true); 
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhr.send("command=" + encodeURIComponent(command));
-    }
 });
+
+function sendCommand(command) {
+    console.log("Command: " + command);
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", "store_command.php", true); // Use relative URL
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("command=" + encodeURIComponent(command));
+}
