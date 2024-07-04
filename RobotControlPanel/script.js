@@ -59,4 +59,3 @@ function sendCommand(command) {
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send("command=" + encodeURIComponent(command));
 }
-// <<<سديم عدلت
